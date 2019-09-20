@@ -2,9 +2,10 @@ import React from 'react';
 import If from '../If/If.jsx';
 
 class Item extends React.Component {
-  handleEdit(){
-
-  }
+  handleChange = (event) => {
+    event.preventDefault();
+    this.props.handleTemp(event.target.value);
+  };
 
   render(){
     return(
@@ -12,7 +13,7 @@ class Item extends React.Component {
         <li id={this.props.key}>
           <If condition={this.props.condition===false}>
             <form>
-              <input name={this.props.text} value={this.props.children}/>
+              <input name={this.props.text} placeholder={this.props.children} onChange={this.handleChange}/>
             </form>
           </If>
 
@@ -22,7 +23,7 @@ class Item extends React.Component {
             </span>
           </If>
 
-          <button onClick={this.handleEdit}>Edit</button>
+          {/*<button onClick={this.handleEdit}>Edit</button>*/}
           {/*<button onClick={this.handleDelete} id={this.props.key}>Delete</button>*/}
         </li>
       </>

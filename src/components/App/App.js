@@ -34,6 +34,13 @@ class App extends React.Component {
     ));
   };
 
+  // TODO: Work on this
+  editItem = (id, event) => {
+    this.setState((previousState) => ({
+      todoList: previousState.todoList.filter(i => i.id === id),
+    }));
+  };
+
   deleteItem = (id, event) => {
     this.setState((previousState) => ({
       todoList: previousState.todoList.filter(i => i.id !== id),
@@ -57,11 +64,12 @@ class App extends React.Component {
               {this.state.todoList.map( (item) => {
                 return (
                   <>
-                  <Item condition={item.complete} name={item.text} key={item.id} deleteItem={this.deleteItem}>
-                    {item.text}
+                    <Item condition={item.complete} name={item.text} key={item.id} handleTemp={this.handleTemp}>
+                      {item.text}
+                    </Item>
 
-                  </Item>
-                  <button onClick={(event) => this.deleteItem(item.id, event)} id={item.id}>Delete</button>
+                    <button onClick={(event) => this.editItem(item.id, event)}>Edit</button>
+                    <button onClick={(event) => this.deleteItem(item.id, event)}>Delete</button>
                   </>
                 )
               })}
