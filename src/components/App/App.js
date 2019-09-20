@@ -4,7 +4,7 @@ import Form from '../Form/Form.jsx';
 import Item from '../Item/Item.jsx';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       count: 0,
@@ -25,30 +25,30 @@ class App extends React.Component {
   }
 
   handleTemp = (tempText) => {
-    this.setState({temp: tempText});
+    this.setState({ temp: tempText });
   };
 
   handleState = () => {
     this.setState((previousState) => (
-      previousState.todoList.push({text: previousState.temp, id: Math.random(), complete: false,})
+      previousState.todoList.push({ text: previousState.temp, id: Math.random(), complete: false })
     ));
   };
 
   // TODO: Work on this
-  editItem = (id, event) => {
+  editItem = (id) => {
     this.setState((previousState) => ({
-      todoList: previousState.todoList.filter(i => i.id === id),
+      todoList: previousState.todoList.filter((i) => i.id === id),
     }));
   };
 
-  deleteItem = (id, event) => {
+  deleteItem = (id) => {
     this.setState((previousState) => ({
-      todoList: previousState.todoList.filter(i => i.id !== id),
+      todoList: previousState.todoList.filter((i) => i.id !== id),
     }));
   };
 
-  render(){
-    return(
+  render() {
+    return (
       <>
         <Header />
 
@@ -61,17 +61,21 @@ class App extends React.Component {
 
           <div className="items">
             <ul>
-              {this.state.todoList.map( (item) => {
+              {this.state.todoList.map((item) => {
                 return (
                   <>
-                    <Item condition={item.complete} name={item.text} key={item.id} handleTemp={this.handleTemp}>
+                    <Item
+                      condition={item.complete}
+                      name={item.text}
+                      key={item.id}
+                      handleTemp={this.handleTemp}>
                       {item.text}
                     </Item>
 
                     <button onClick={(event) => this.editItem(item.id, event)}>Edit</button>
                     <button onClick={(event) => this.deleteItem(item.id, event)}>Delete</button>
                   </>
-                )
+                );
               })}
             </ul>
           </div>
