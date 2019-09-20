@@ -22,9 +22,6 @@ class Item extends React.Component {
               {this.props.children}
             </span>
           </If>
-
-          {/*<button onClick={this.handleEdit}>Edit</button>*/}
-          {/*<button onClick={this.handleDelete} id={this.props.key}>Delete</button>*/}
         </li>
       </>
     );
