@@ -1,37 +1,30 @@
 import React from 'react';
-import { If, Else } from '../If/If.jsx';
+import If from '../If/If.jsx';
 
 class Item extends React.Component {
   handleEdit(){
 
   }
 
-  handleDelete(){
-
-  }
-
   render(){
     return(
       <>
-        <ul>
-          <li>
-            <If condition={}>
+        <li id={this.props.key}>
+          <If condition={this.props.condition===false}>
+            <form>
+              <input name={this.props.text} value={this.props.children}/>
+            </form>
+          </If>
+
+          <If condition={this.props.condition===true}>
+            <span id={this.props.name}>
               {this.props.children}
-              <form>
-                <input name={this.props.children.id} value={this.props.children.text}/>
-              </form>
-            </If>
+            </span>
+          </If>
 
-            <Else>
-              <span id={this.props.children.id}>
-                {this.props.children.text}
-              </span>
-            </Else>
-
-            <button onClick={this.handleEdit}>Edit</button>
-            <button onClick{this.handleDelete}>Delete</button>
-          </li>
-        </ul>
+          <button onClick={this.handleEdit}>Edit</button>
+          {/*<button onClick={this.handleDelete} id={this.props.key}>Delete</button>*/}
+        </li>
       </>
     );
   }
